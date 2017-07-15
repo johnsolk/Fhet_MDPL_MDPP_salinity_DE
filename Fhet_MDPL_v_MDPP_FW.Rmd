@@ -1,0 +1,185 @@
+---
+title: "Fhet_MDPP_MDPL_DE_FW"
+author: "Lisa Cohen"
+date: "7/15/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# F. heteroclitus MDPP vs. MDPL: Freshwater acclimation treatment
+
+
+### Libraries
+```{r echo=TRUE}
+library(DESeq2)
+library("lattice")
+library(biomaRt)
+library(tximport)
+library(readr)
+library(gplots)
+library(RColorBrewer)
+source('~/Documents/UCDavis/ECE221/ECE221_final_project/extra_scripts/plotPCAWithSampleNames.R')
+setwd("~/Documents/Whitehead/Fhet_salmon_quant/combined_isoforms/")
+```
+### Import quantification counts from salmon (TPM)
+```{r echo=TRUE}
+dir<-"~/Documents/Whitehead/Fhet_salmon_quant"
+files_list = list.files("~/Documents/Whitehead/Fhet_salmon_quant/combined_isoforms/")
+files <- file.path(dir, "combined_isoforms",c("F_heteroclitusMDPL_BW_1.quant","F_heteroclitusMDPL_BW_2.quant","F_heteroclitusMDPL_BW_3.quant","F_heteroclitusMDPL_FW_1.quant","F_heteroclitusMDPL_FW_2.quant","F_heteroclitusMDPL_FW_3.quant","F_heteroclitusMDPL_transfer_1.quant","F_heteroclitusMDPL_transfer_2.quant","F_heteroclitusMDPL_transfer_3.quant","F_heteroclitusMDPP_BW_1.quant","F_heteroclitusMDPP_BW_2.quant","F_heteroclitusMDPP_BW_3.quant","F_heteroclitusMDPP_FW_1.quant","F_heteroclitusMDPP_FW_2.quant","F_heteroclitusMDPP_FW_3.quant","F_heteroclitusMDPP_transfer_1.quant","F_heteroclitusMDPP_transfer_2.quant","F_heteroclitusMDPP_transfer_3.quant"), "quant.sf")
+#files <- files_list
+names(files) <- c("MDPL_BW_1","MDPL_BW_2","MDPL_BW_3","MDPL_FW_1","MDPL_FW_2","MDPL_FW_3","MDPL_transfer_1","MDPL_transfer_2","MDPL_transfer_3","MDPP_BW_1","MDPP_BW_2","MDPP_BW_3","MDPP_FW_1","MDPP_FW_2","MDPP_FW_3","MDPP_transfer_1","MDPP_transfer_2","MDPP_transfer_3")
+files
+
+for (file in files){
+  print(file)
+  print(file.exists(files))
+  }
+gene_names <- read.csv("~/Documents/Whitehead/Fhet_salmon_quant/Fhet_gene_transcript_names.csv")
+cols<-c("row","transcript_id","gene_id")
+colnames(gene_names)<-cols
+tx2gene<-gene_names[,2:3]
+head(tx2gene)
+txi.salmon <- tximport(files, type = "salmon", tx2gene = tx2gene, reader = read_tsv)
+head(txi.salmon$counts)
+dim(txi.salmon$counts)
+```
+### Experimental Design
+
+```{r echo=TRUE}
+condition = factor(c("MDPL_BW","MDPL_BW","MDPL_BW","MDPL_FW","MDPL_FW","MDPL_FW","MDPL_transfer","MDPL_transfer","MDPL_transfer","MDPP_BW","MDPP_BW","MDPP_BW","MDPP_FW","MDPP_FW","MDPP_FW","MDPP_transfer","MDPP_transfer","MDPP_transfer"))
+ExpDesign <- data.frame(row.names=colnames(txi.salmon$counts), condition = condition)
+ExpDesign
+```
+
+### DESeq2
+```{r echo=TRUE}
+dds <- DESeqDataSetFromTximport(txi.salmon, ExpDesign, ~condition)
+dds<-DESeq(dds,betaPrior=FALSE)
+```
+### Get normalized counts and filter out genes with low expression 
+```{r echo=TRUE}
+# get counts
+counts_table = counts( dds, normalized=TRUE )
+filtered_norm_counts<-counts_table[!rowSums(counts_table==0)>=1, ]
+filtered_norm_counts<-as.data.frame(filtered_norm_counts)
+GeneID<-rownames(filtered_norm_counts)
+filtered_norm_counts<-cbind(filtered_norm_counts,GeneID)
+dim(filtered_norm_counts)
+head(filtered_norm_counts)
+```
+### Plot dispersion estimates
+```{r echo=TRUE}
+plotDispEsts(dds)
+```
+### Get GeneID and names from 
+```{r echo=TRUE}
+# get gene id names
+gene_id<-read.csv("~/Documents/Whitehead/Fhet_salmon_quant/Fhet_gene_id_clean.csv")
+cols<-c("row","GeneID","Name")
+colnames(gene_id)<-cols
+gene_id<-gene_id[,2:3]
+dim(gene_id)
+head(gene_id)
+unique_genes<-unique(gene_id$GeneID)
+length(unique_genes)
+gene_id <- gene_id[unique(gene_id$GeneID),]
+dim(gene_id)
+head(gene_id)
+```
+### Get results table, merge with counts and add gene names
+```{r echo=TRUE}
+res<-results(dds,contrast=c("condition","MDPL_FW","MDPP_FW"))
+head(res)
+res_ordered<-res[order(res$padj),]
+GeneID<-rownames(res_ordered)
+res_ordered<-as.data.frame(res_ordered)
+res_genes<-cbind(res_ordered,GeneID)
+dim(res_genes)
+head(res_genes)
+res_genes_merged <- merge(res_genes,filtered_norm_counts,by=unique("GeneID"))
+dim(res_genes_merged)
+head(res_genes_merged)
+res_genes_merged_names <- merge(res_genes_merged,gene_id,by=unique("GeneID"))
+dim(res_genes_merged_names)
+head(res_genes_merged_names)
+res_genes_merged_names <- res_genes_merged_names[order(res_genes_merged_names$padj),]
+dim(res_genes_merged_names)
+head(res_genes_merged_names)
+##### removed duplicate GeneID
+res_genes_merged_names_unique<-res_genes_merged_names[!duplicated(res_genes_merged_names$GeneID),]
+res_ordered<-res_genes_merged_names_unique[order(res_genes_merged_names_unique$padj),]
+head(res_ordered)
+dim(res_ordered)
+res_ordered<-res_ordered[,c(1,26,2:7,11:13,20:22)]
+write.csv(res_ordered, file="Fhet_MDPL_v_MDPP_FW_DESeq2_all.csv" )
+```
+
+### Get significantly differentially expressed genes, padj<0.05 and log2FC+=1
+```{r echo=TRUE}
+resSig = res_ordered[res_ordered$padj < 0.05, ]
+resSig = resSig[resSig$log2FoldChange > 1 | resSig$log2FoldChange < -1,]
+write.csv(resSig,file="Fhet_MDPL_v_MDPP_DESeq_FW_padj0.05_log2FC1.csv")
+# MA plot with gene names
+plot(log2(res_ordered$baseMean), res_ordered$log2FoldChange, col=ifelse(res_ordered$padj < 0.05, "red","gray67"),main="MDPL_FW vs. MDPP_FW (padj<0.05, log2FC = ±1)",xlim=c(1,20),pch=20,cex=1,ylim=c(-12,12))
+abline(h=c(-1,1), col="blue")
+```
+
+
+### Labeled MA plot
+
+```{r echo=TRUE}
+# MA plot with gene names
+# adjust significant genes to avoid crowded plotting
+resSig = res_ordered[res_ordered$padj < 0.01, ]
+resSig = resSig[resSig$log2FoldChange > 2 | resSig$log2FoldChange < -2,]
+plot(log2(res_ordered$baseMean), res_ordered$log2FoldChange, col=ifelse(res_ordered$padj < 0.05, "red","gray67"),main="MDPL_FW vs. MDPP_FW (padj<0.05, log2FC = ±1)",xlim=c(1,20),pch=20,cex=1,ylim=c(-12,12))
+abline(h=c(-1,1), col="blue")
+genes<-resSig$Name
+mygenes <- resSig[,]
+baseMean_mygenes <- mygenes[,"baseMean"]
+log2FoldChange_mygenes <- mygenes[,"log2FoldChange"]
+text(log2(baseMean_mygenes),log2FoldChange_mygenes,labels=genes,pos=2,cex=0.60)
+```
+
+### Heatmap
+
+```{r echo=TRUE}
+# heatmap
+up_down<-resSig
+dim(up_down)
+up_down_FC<-subset(up_down,up_down$log2FoldChange>2 | up_down$log2FoldChange< -2)
+write.csv(up_down_FC,file="Fhet_DESeq_FW_MDPL_v_MDPP_padj0.01_updownlogFC2.csv")
+dim(up_down_FC)
+d<-up_down_FC
+d<-na.omit(d)
+dim(d)
+head(d)
+colnames(d)
+d<-up_down_FC[,c(9:14)]
+d<-as.matrix(d)
+d<-as.data.frame(d)
+d<-as.matrix(d)
+rownames(d) <- up_down_FC[,1]
+#d<-type.convert(d)
+head(d)
+colnames(d)
+#d<-d[,c(7,2,3,4,5,6,1,8)]
+colnames(d)
+
+hr <- hclust(as.dist(1-cor(t(d), method="pearson")), method="complete")
+mycl <- cutree(hr, h=max(hr$height/1.5))
+clusterCols <- rainbow(length(unique(mycl)))
+myClusterSideBar <- clusterCols[mycl]
+myheatcol <- greenred(75)
+heatmap.2(d, main="MDPL_FW vs. MDPP_FW (padj<0.01, log2FC = ±1)", 
+          Rowv=as.dendrogram(hr),
+          cexRow=0.75,cexCol=0.8,srtCol= 90,
+          adjCol = c(NA,0),offsetCol=2.5, 
+          Colv=NA, dendrogram="row", 
+          scale="row", col=myheatcol, 
+          density.info="none", 
+          trace="none", RowSideColors= myClusterSideBar)
+```
