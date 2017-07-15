@@ -1,0 +1,9 @@
+{
+    "salmon_version": "0.7.2",
+    "index": "kfish2rae5g.mrna.combined_index",
+    "libType": "IU",
+    "mates1": "/home/ljcohen/osmotic_trim/F_heteroclitusMDPP_transfer_1.trim_1P.fq",
+    "mates2": "/home/ljcohen/osmotic_trim/F_heteroclitusMDPP_transfer_1.trim_2P.fq",
+    "output": "F_heteroclitusMDPP_transfer_1.quant",
+    "auxDir": "aux_info"
+}
