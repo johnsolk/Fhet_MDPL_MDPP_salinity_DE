@@ -2,8 +2,11 @@ Fundulus heterotlitus MDPL and MDPP populations, differential expression analasi
 
 DESeq analyses:
 
-MDPL vs. MDPP interaction only (population:condition):
-http://htmlpreview.github.io/?https://github.com/ljcohen/Fhet_MDPL_MDPP_salinity_DE/blob/master/Fhet_MDPL_v_MDPP_interactiononly.html
+MDPL vs. MDPP interaction only (population:condition), BW and FW:
+http://htmlpreview.github.io/?https://github.com/ljcohen/Fhet_MDPL_MDPP_salinity_DE/blob/master/Fhet_MDPL_v_MDPP_interactiononly_FW_BW.html
+
+MDPL vs. MDPP interaction only (population:condition), FW and transfer:
+http://htmlpreview.github.io/?https://github.com/ljcohen/Fhet_MDPL_MDPP_salinity_DE/blob/master/Fhet_MDPL_v_MDPP_interactiononly_FW_transfer.html
 
 MDPL_FW vs. MDPP_FW:
 http://htmlpreview.github.io/?https://github.com/ljcohen/Fhet_MDPL_MDPP_salinity_DE/blob/master/Fhet_MDPL_v_MDPP_FW.html
