@@ -286,3 +286,7 @@ head(all_merged)
 res_ordered<-all_merged[order(all_merged$padj.FW_BW.pop),]
 write.csv(res_ordered, file="Fhet_MDPL_vs_MDPP_DESeq2_allmodelterms_TR_FW_and_FW_BW.csv" )
 ```
+### Version Info
+```{r echo=TRUE}
+sessionInfo()
+```
