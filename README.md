@@ -2,6 +2,9 @@ Fundulus heterotlitus MDPL and MDPP populations, differential expression analasi
 
 DESeq analyses:
 
+All model terms combined: population + condition + population:condition
+http://htmlpreview.github.io/?https://github.com/ljcohen/Fhet_MDPL_MDPP_salinity_DE/blob/master/Fhet_MDPL_v_MDPP_combined.html
+
 MDPL vs. MDPP interaction only (population:condition), BW and FW:
 http://htmlpreview.github.io/?https://github.com/ljcohen/Fhet_MDPL_MDPP_salinity_DE/blob/master/Fhet_MDPL_v_MDPP_interactiononly_FW_BW.html
 
