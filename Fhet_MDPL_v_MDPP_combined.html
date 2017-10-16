@@ -2134,7 +2134,19 @@ colnames(all_merged)</code></pre>
 ## [61] &quot;MDPP_transfer_1&quot;                  &quot;MDPP_transfer_2&quot;                 
 ## [63] &quot;MDPP_transfer_3&quot;</code></pre>
 <pre class="r"><code>all_merged&lt;- all_merged[,c(1:20,34:51,21:32,55:57,61:63)]
-colnames(all_merged)&lt;-c(&quot;GeneID&quot;,&quot;Name&quot;,&quot;baseMean.FW_BW.pop&quot;,&quot;log2FoldChange.FW_BW.pop&quot;,&quot;lfcSE.FW_BW.pop&quot;,&quot;stat.FW_BW.pop&quot;,&quot;pvalue.FW_BW.pop&quot;,&quot;padj.FW_BW.pop&quot;,&quot;baseMean.FW_BW.condition&quot;,&quot;log2FoldChange.FW_BW.condition&quot;,&quot;lfcSE.FW_BW.condition&quot;,&quot;stat.FW_BW.condition&quot;,&quot;pvalue.FW_BW.condition&quot;,&quot;padj.FW_BW.condition&quot;,&quot;baseMean.FW_BW.interaction&quot;,&quot;log2FoldChange.FW_BW.interaction&quot;,&quot;lfcSE.FW_BW.interaction&quot;,&quot;stat.FW_BW.interaction&quot;,&quot;pvalue.FW_BW.interaction&quot;,&quot;padj.FW_BW.interaction&quot;,&quot;MDPL_BW_1&quot;,&quot;MDPL_BW_2&quot;,&quot;MDPL_BW_3&quot;,&quot;MDPL_FW_1.x&quot;,&quot;MDPL_FW_2.x&quot;,&quot;MDPL_FW_3.x&quot;,&quot;MDPP_BW_1&quot;,&quot;MDPP_BW_2&quot;,&quot;MDPP_BW_3&quot;,&quot;MDPP_FW_1&quot;,&quot;MDPP_FW_2&quot;,&quot;MDPP_FW_3&quot;,&quot;baseMean.TR_FW.pop&quot;,&quot;log2FoldChange.TR_FW.pop&quot;,&quot;lfcSE.TR_FW.pop&quot;,&quot;stat.TR_FW.pop&quot;,&quot;pvalue.TR_FW.pop&quot;,&quot;padj.TR_FW.pop&quot;,&quot;baseMean.TR_FW.condition&quot;,&quot;log2FoldChange.TR_FW.condition&quot;,&quot;lfcSE.TR_FW.condition&quot;,&quot;stat.TR_FW.condition&quot;,&quot;pvalue.TR_FW.condition&quot;,&quot;padj.TR_FW.condition&quot;,&quot;baseMean.TR_FW.interaction&quot;,&quot;log2FoldChange.TR_FW.interaction&quot;,&quot;lfcSE.TR_FW.interaction&quot;,&quot;stat.TR_FW.interaction&quot;,&quot;pvalue.TR_FW.interaction&quot;,&quot;padj.TR_FW.interaction&quot;,&quot;MDPL_transfer_1&quot;,&quot;MDPL_transfer_2&quot;,&quot;MDPL_transfer_3&quot;,&quot;MDPP_transfer_1&quot;,&quot;MDPP_transfer_2&quot;,&quot;MDPP_transfer_3&quot;)
+colnames(all_merged)&lt;-c(&quot;GeneID&quot;,&quot;Name&quot;,
+                        &quot;baseMean.FW_BW.pop&quot;,&quot;log2FoldChange.FW_BW.pop&quot;,&quot;lfcSE.FW_BW.pop&quot;,&quot;stat.FW_BW.pop&quot;,&quot;pvalue.FW_BW.pop&quot;,&quot;padj.FW_BW.pop&quot;,
+                        &quot;baseMean.FW_BW.condition&quot;,&quot;log2FoldChange.FW_BW.condition&quot;,&quot;lfcSE.FW_BW.condition&quot;,&quot;stat.FW_BW.condition&quot;,&quot;pvalue.FW_BW.condition&quot;,&quot;padj.FW_BW.condition&quot;,
+                        &quot;baseMean.FW_BW.interaction&quot;,&quot;log2FoldChange.FW_BW.interaction&quot;,&quot;lfcSE.FW_BW.interaction&quot;,&quot;stat.FW_BW.interaction&quot;,&quot;pvalue.FW_BW.interaction&quot;,&quot;padj.FW_BW.interaction&quot;,
+                        &quot;baseMean.TR_FW.pop&quot;,&quot;log2FoldChange.TR_FW.pop&quot;,&quot;lfcSE.TR_FW.pop&quot;,&quot;stat.TR_FW.pop&quot;,&quot;pvalue.TR_FW.pop&quot;,&quot;padj.TR_FW.pop&quot;,
+                        &quot;baseMean.TR_FW.condition&quot;,&quot;log2FoldChange.TR_FW.condition&quot;,&quot;lfcSE.TR_FW.condition&quot;,&quot;stat.TR_FW.condition&quot;,&quot;pvalue.TR_FW.condition&quot;,&quot;padj.TR_FW.condition&quot;,
+                        &quot;baseMean.TR_FW.interaction&quot;,&quot;log2FoldChange.TR_FW.interaction&quot;,&quot;lfcSE.TR_FW.interaction&quot;,&quot;stat.TR_FW.interaction&quot;,&quot;pvalue.TR_FW.interaction&quot;,&quot;padj.TR_FW.interaction&quot;,
+                        &quot;MDPL_BW_1&quot;,&quot;MDPL_BW_2&quot;,&quot;MDPL_BW_3&quot;,
+                        &quot;MDPL_FW_1&quot;,&quot;MDPL_FW_2&quot;,&quot;MDPL_FW_3&quot;,
+                        &quot;MDPP_BW_1&quot;,&quot;MDPP_BW_2&quot;,&quot;MDPP_BW_3&quot;,
+                        &quot;MDPP_FW_1&quot;,&quot;MDPP_FW_2&quot;,&quot;MDPP_FW_3&quot;,
+                        &quot;MDPL_transfer_1&quot;,&quot;MDPL_transfer_2&quot;,&quot;MDPL_transfer_3&quot;,
+                        &quot;MDPP_transfer_1&quot;,&quot;MDPP_transfer_2&quot;,&quot;MDPP_transfer_3&quot;)
 head(all_merged)</code></pre>
 <pre><code>##            GeneID
 ## 1 Funhe2EKm000004
@@ -2192,83 +2204,83 @@ head(all_merged)</code></pre>
 ## 4               0.4297944           -0.229421367                0.8185414
 ## 5               1.1024033           -0.461059823                0.6447557
 ## 6               0.2406715           -0.218363054                0.8271462
-##   padj.FW_BW.interaction  MDPL_BW_1   MDPL_BW_2 MDPL_BW_3 MDPL_FW_1.x
-## 1              0.9996256   486.7628 -0.09932062 0.2549865  -0.3895132
-## 2              0.9996256   395.1544  0.05425526 0.2098461   0.2585478
-## 3              0.9996256   109.5936 -0.05905506 0.3151862  -0.1873656
-## 4              0.9996256   166.0150 -0.23783175 0.3134789  -0.7586850
-## 5              0.9996256    10.3182 -0.22042897 0.7775166  -0.2835039
-## 6              0.9996256 43164.3286  0.16163687 0.1656289   0.9758980
-##   MDPL_FW_2.x MDPL_FW_3.x  MDPP_BW_1    MDPP_BW_2 MDPP_BW_3    MDPP_FW_1
-## 1   0.6968965   0.9999708   486.7628  0.174286845 0.2542119  0.685596647
-## 2   0.7959842   0.9999708   395.1544  0.083825164 0.2096635  0.399808176
-## 3   0.8513740   0.9999708   109.5936  0.081148298 0.3137504  0.258639638
-## 4   0.4480410   0.9999708   166.0150  0.001782906 0.3124570  0.005706084
-## 5   0.7767906   0.9999708    10.3182 -0.073964581 0.7796819 -0.094865067
-## 6   0.3291150   0.9999708 43164.3286 -0.014658395 0.1656277 -0.088502068
-##   MDPP_FW_2 MDPP_FW_3 baseMean.TR_FW.pop log2FoldChange.TR_FW.pop
-## 1 0.4929675 0.9999391           486.7628                0.1705136
-## 2 0.6892978 0.9999391           395.1544               -0.1045389
-## 3 0.7959133 0.9999391           109.5936               -0.1927028
-## 4 0.9954472 0.9999391           166.0150                0.3608868
-## 5 0.9244220        NA            10.3182                0.1330870
-## 6 0.9294776 0.9999391         43164.3286               -0.2113145
+##   padj.FW_BW.interaction baseMean.TR_FW.pop log2FoldChange.TR_FW.pop
+## 1              0.9996256           486.7628              -0.09932062
+## 2              0.9996256           395.1544               0.05425526
+## 3              0.9996256           109.5936              -0.05905506
+## 4              0.9996256           166.0150              -0.23783175
+## 5              0.9996256            10.3182              -0.22042897
+## 6              0.9996256         43164.3286               0.16163687
 ##   lfcSE.TR_FW.pop stat.TR_FW.pop pvalue.TR_FW.pop padj.TR_FW.pop
-## 1       0.3589737      0.4750030        0.6347849      0.9999929
-## 2       0.2956824     -0.3535511        0.7236753      0.9999929
-## 3       0.4429990     -0.4349960        0.6635653      0.9999929
-## 4       0.4404618      0.8193374        0.4125939      0.9999929
-## 5       1.0916316      0.1219157        0.9029658             NA
-## 6       0.2342220     -0.9021975        0.3669520      0.9999929
+## 1       0.2549865     -0.3895132        0.6968965      0.9999708
+## 2       0.2098461      0.2585478        0.7959842      0.9999708
+## 3       0.3151862     -0.1873656        0.8513740      0.9999708
+## 4       0.3134789     -0.7586850        0.4480410      0.9999708
+## 5       0.7775166     -0.2835039        0.7767906      0.9999708
+## 6       0.1656289      0.9758980        0.3291150      0.9999708
 ##   baseMean.TR_FW.condition log2FoldChange.TR_FW.condition
-## 1                329.53918                     287.066649
-## 2                307.42107                     335.976174
-## 3                 66.43829                      93.928041
-## 4                112.71733                     143.715544
-## 5                 18.99627                       9.793854
-## 6              39304.51906                   36634.465979
+## 1                 486.7628                    0.174286845
+## 2                 395.1544                    0.083825164
+## 3                 109.5936                    0.081148298
+## 4                 166.0150                    0.001782906
+## 5                  10.3182                   -0.073964581
+## 6               43164.3286                   -0.014658395
 ##   lfcSE.TR_FW.condition stat.TR_FW.condition pvalue.TR_FW.condition
-## 1             341.42790           292.510472             319.910763
-## 2             243.81473           337.031126             323.821283
-## 3              74.03230           109.606787              83.582882
-## 4             105.56775           116.864288              99.041166
-## 5               3.12243             6.547049               5.196264
-## 6           32888.99449         38398.168736           33640.086227
+## 1             0.2542119          0.685596647              0.4929675
+## 2             0.2096635          0.399808176              0.6892978
+## 3             0.3137504          0.258639638              0.7959133
+## 4             0.3124570          0.005706084              0.9954472
+## 5             0.7796819         -0.094865067              0.9244220
+## 6             0.1656277         -0.088502068              0.9294776
 ##   padj.TR_FW.condition baseMean.TR_FW.interaction
-## 1            426.26524                   233.4472
-## 2            299.26788                   319.4484
-## 3             79.44838                    87.9395
-## 4            129.52655                   135.8395
-## 5             10.88649                    12.3754
-## 6          41940.97051                 27026.4620
+## 1            0.9999391                   486.7628
+## 2            0.9999391                   395.1544
+## 3            0.9999391                   109.5936
+## 4            0.9999391                   166.0150
+## 5                   NA                    10.3182
+## 6            0.9999391                 43164.3286
 ##   log2FoldChange.TR_FW.interaction lfcSE.TR_FW.interaction
-## 1                       287.017208              302.943886
-## 2                       345.763658              433.903054
-## 3                        77.399227               79.794270
-## 4                       115.696614              153.343843
-## 5                         6.806277                9.404073
-## 6                     30951.567615            36189.665916
+## 1                        0.1705136               0.3589737
+## 2                       -0.1045389               0.2956824
+## 3                       -0.1927028               0.4429990
+## 4                        0.3608868               0.4404618
+## 5                        0.1330870               1.0916316
+## 6                       -0.2113145               0.2342220
 ##   stat.TR_FW.interaction pvalue.TR_FW.interaction padj.TR_FW.interaction
-## 1              310.38817                479.09546              332.49273
-## 2              250.68664                346.75022              330.87778
-## 3               91.89127                 64.80604              125.51546
-## 4              106.65572                198.98107              107.35276
-## 5                6.78851                 17.02860                4.46773
-## 6            33962.21036              30218.71461            38088.46891
-##   MDPL_transfer_1 MDPL_transfer_2 MDPL_transfer_3 MDPP_transfer_1
-## 1       483.99383      551.074655       594.98867       409.13454
-## 2       391.35033      327.030450       456.91020       360.23231
-## 3        93.55011      114.803946        91.14611       149.39312
-## 4       156.11855      194.046630       200.35529       148.61751
-## 5        12.79100        5.831706        10.81945         9.86363
-## 6     46517.69796    36485.790865     38870.55434     40212.40982
-##   MDPP_transfer_2 MDPP_transfer_3
-## 1       519.21141      621.706326
-## 2       396.34891      461.188786
-## 3       114.92562       93.051767
-## 4       140.04091      216.256087
-## 5        17.07019        4.715604
-## 6     46623.76259    39303.499083</code></pre>
+## 1              0.4750030                0.6347849              0.9999929
+## 2             -0.3535511                0.7236753              0.9999929
+## 3             -0.4349960                0.6635653              0.9999929
+## 4              0.8193374                0.4125939              0.9999929
+## 5              0.1219157                0.9029658                     NA
+## 6             -0.9021975                0.3669520              0.9999929
+##     MDPL_BW_1    MDPL_BW_2   MDPL_BW_3    MDPL_FW_1    MDPL_FW_2
+## 1   329.53918   287.066649   341.42790   292.510472   319.910763
+## 2   307.42107   335.976174   243.81473   337.031126   323.821283
+## 3    66.43829    93.928041    74.03230   109.606787    83.582882
+## 4   112.71733   143.715544   105.56775   116.864288    99.041166
+## 5    18.99627     9.793854     3.12243     6.547049     5.196264
+## 6 39304.51906 36634.465979 32888.99449 38398.168736 33640.086227
+##     MDPL_FW_3  MDPP_BW_1    MDPP_BW_2    MDPP_BW_3   MDPP_FW_1   MDPP_FW_2
+## 1   426.26524   233.4472   287.017208   302.943886   310.38817   479.09546
+## 2   299.26788   319.4484   345.763658   433.903054   250.68664   346.75022
+## 3    79.44838    87.9395    77.399227    79.794270    91.89127    64.80604
+## 4   129.52655   135.8395   115.696614   153.343843   106.65572   198.98107
+## 5    10.88649    12.3754     6.806277     9.404073     6.78851    17.02860
+## 6 41940.97051 27026.4620 30951.567615 36189.665916 33962.21036 30218.71461
+##     MDPP_FW_3 MDPL_transfer_1 MDPL_transfer_2 MDPL_transfer_3
+## 1   332.49273       483.99383      551.074655       594.98867
+## 2   330.87778       391.35033      327.030450       456.91020
+## 3   125.51546        93.55011      114.803946        91.14611
+## 4   107.35276       156.11855      194.046630       200.35529
+## 5     4.46773        12.79100        5.831706        10.81945
+## 6 38088.46891     46517.69796    36485.790865     38870.55434
+##   MDPP_transfer_1 MDPP_transfer_2 MDPP_transfer_3
+## 1       409.13454       519.21141      621.706326
+## 2       360.23231       396.34891      461.188786
+## 3       149.39312       114.92562       93.051767
+## 4       148.61751       140.04091      216.256087
+## 5         9.86363        17.07019        4.715604
+## 6     40212.40982     46623.76259    39303.499083</code></pre>
 <pre class="r"><code>res_ordered&lt;-all_merged[order(all_merged$padj.FW_BW.pop),]
 write.csv(res_ordered, file=&quot;Fhet_MDPL_vs_MDPP_DESeq2_allmodelterms_TR_FW_and_FW_BW.csv&quot; )</code></pre>
 </div>

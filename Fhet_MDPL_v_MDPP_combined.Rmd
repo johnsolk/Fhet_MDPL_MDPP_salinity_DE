@@ -281,7 +281,19 @@ head(all_merged)
 # too many redundant cols, so remove
 colnames(all_merged)
 all_merged<- all_merged[,c(1:20,34:51,21:32,55:57,61:63)]
-colnames(all_merged)<-c("GeneID","Name","baseMean.FW_BW.pop","log2FoldChange.FW_BW.pop","lfcSE.FW_BW.pop","stat.FW_BW.pop","pvalue.FW_BW.pop","padj.FW_BW.pop","baseMean.FW_BW.condition","log2FoldChange.FW_BW.condition","lfcSE.FW_BW.condition","stat.FW_BW.condition","pvalue.FW_BW.condition","padj.FW_BW.condition","baseMean.FW_BW.interaction","log2FoldChange.FW_BW.interaction","lfcSE.FW_BW.interaction","stat.FW_BW.interaction","pvalue.FW_BW.interaction","padj.FW_BW.interaction","MDPL_BW_1","MDPL_BW_2","MDPL_BW_3","MDPL_FW_1.x","MDPL_FW_2.x","MDPL_FW_3.x","MDPP_BW_1","MDPP_BW_2","MDPP_BW_3","MDPP_FW_1","MDPP_FW_2","MDPP_FW_3","baseMean.TR_FW.pop","log2FoldChange.TR_FW.pop","lfcSE.TR_FW.pop","stat.TR_FW.pop","pvalue.TR_FW.pop","padj.TR_FW.pop","baseMean.TR_FW.condition","log2FoldChange.TR_FW.condition","lfcSE.TR_FW.condition","stat.TR_FW.condition","pvalue.TR_FW.condition","padj.TR_FW.condition","baseMean.TR_FW.interaction","log2FoldChange.TR_FW.interaction","lfcSE.TR_FW.interaction","stat.TR_FW.interaction","pvalue.TR_FW.interaction","padj.TR_FW.interaction","MDPL_transfer_1","MDPL_transfer_2","MDPL_transfer_3","MDPP_transfer_1","MDPP_transfer_2","MDPP_transfer_3")
+colnames(all_merged)<-c("GeneID","Name",
+                        "baseMean.FW_BW.pop","log2FoldChange.FW_BW.pop","lfcSE.FW_BW.pop","stat.FW_BW.pop","pvalue.FW_BW.pop","padj.FW_BW.pop",
+                        "baseMean.FW_BW.condition","log2FoldChange.FW_BW.condition","lfcSE.FW_BW.condition","stat.FW_BW.condition","pvalue.FW_BW.condition","padj.FW_BW.condition",
+                        "baseMean.FW_BW.interaction","log2FoldChange.FW_BW.interaction","lfcSE.FW_BW.interaction","stat.FW_BW.interaction","pvalue.FW_BW.interaction","padj.FW_BW.interaction",
+                        "baseMean.TR_FW.pop","log2FoldChange.TR_FW.pop","lfcSE.TR_FW.pop","stat.TR_FW.pop","pvalue.TR_FW.pop","padj.TR_FW.pop",
+                        "baseMean.TR_FW.condition","log2FoldChange.TR_FW.condition","lfcSE.TR_FW.condition","stat.TR_FW.condition","pvalue.TR_FW.condition","padj.TR_FW.condition",
+                        "baseMean.TR_FW.interaction","log2FoldChange.TR_FW.interaction","lfcSE.TR_FW.interaction","stat.TR_FW.interaction","pvalue.TR_FW.interaction","padj.TR_FW.interaction",
+                        "MDPL_BW_1","MDPL_BW_2","MDPL_BW_3",
+                        "MDPL_FW_1","MDPL_FW_2","MDPL_FW_3",
+                        "MDPP_BW_1","MDPP_BW_2","MDPP_BW_3",
+                        "MDPP_FW_1","MDPP_FW_2","MDPP_FW_3",
+                        "MDPL_transfer_1","MDPL_transfer_2","MDPL_transfer_3",
+                        "MDPP_transfer_1","MDPP_transfer_2","MDPP_transfer_3")
 head(all_merged)
 res_ordered<-all_merged[order(all_merged$padj.FW_BW.pop),]
 write.csv(res_ordered, file="Fhet_MDPL_vs_MDPP_DESeq2_allmodelterms_TR_FW_and_FW_BW.csv" )
